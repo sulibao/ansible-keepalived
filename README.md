@@ -1,1 +1,3 @@
-# ingress-nginx
+```sh
+bash setup.sh
+```

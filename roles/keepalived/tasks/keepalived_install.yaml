@@ -1,0 +1,26 @@
+- name: Install the packages needed for compilation
+  become: true
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - gcc
+    - gcc-c++
+    - make
+    - openssl-devel
+  ignore_errors: yes
+
+- name: unarchive keepalived offline package
+  unarchive:
+    src: files/keepalived-2.2.8.tar.gz
+    dest: /usr/local/src/
+
+- name: install keepalived
+  shell: |
+    ./configure --prefix=/usr/local/keepalived --sysconfdir=/etc --sbindir=/usr/sbin --bindir=/usr/bin
+    make
+    make install
+  args:
+    chdir: /usr/local/src/keepalived-2.2.8
+    creates: /usr/sbin/keepalived
+  become: true

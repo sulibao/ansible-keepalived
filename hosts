@@ -1,0 +1,8 @@
+[keepalived_master]   
+192.168.2.190
+[keepalived_slave]  
+192.168.2.191
+
+[keepalived_cluster:children]
+keepalived_master
+keepalived_slave
