@@ -209,12 +209,12 @@ function install_httpd() {
 }
 
 get_arch_package
-#check_docker
-#check_docker_compose
-#pull_ansible_image
-#ensure_ansible
-#create_ssh_key
-#copy_ssh_key
-#install_keepalived
+check_docker
+check_docker_compose
+pull_ansible_image
+ensure_ansible
+create_ssh_key
+copy_ssh_key
+install_keepalived
 install_nfs
 install_httpd
