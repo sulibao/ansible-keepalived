@@ -1,4 +1,4 @@
-- hosts: keepalived_cluster
+- hosts: all_nodes
   tasks:
   - name: known_hosts file is created if it does not exist
     shell:

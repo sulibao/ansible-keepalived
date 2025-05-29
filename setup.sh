@@ -186,21 +186,35 @@ function  create_ssh_key(){
 
 function copy_ssh_key() {
   echo -e "Copying sshkey."
-  docker exec -i ansible_sulibao /bin/sh -c "cd $path && ansible-playbook  ssh-access.yml -e ansible_ssh_pass=$ssh_pass"  
+  docker exec -i ansible_sulibao /bin/sh -c "cd $path && ansible-playbook ssh-access.yml -e ansible_ssh_pass=$ssh_pass"  
   echo -e "\nCopied sshkey."
 }
 
 function install_keepalived() {
   echo -e "Installing keepalived."
-  docker exec -i ansible_sulibao /bin/sh -c "cd $path && ansible-playbook  keepalived.yml -e ansible_ssh_pass=$ssh_pass"
+  docker exec -i ansible_sulibao /bin/sh -c "cd $path && ansible-playbook keepalived.yml -e ansible_ssh_pass=$ssh_pass"
   echo -e "\nInstalled keepalived."
 }
 
+function install_nfs() {
+  echo -e "Installing nfs."
+  docker exec -i ansible_sulibao /bin/sh -c "cd $path && ansible-playbook nfs.yml -e ansible_ssh_pass=$ssh_pass"
+  echo -e "\nInstalled nfs."
+}
+
+function install_httpd() {
+  echo -e "Installing httpd."
+  docker exec -i ansible_sulibao /bin/sh -c "cd $path && ansible-playbook httpd.yml -e ansible_ssh_pass=$ssh_pass"
+  echo -e "\nInstalled httpd."
+}
+
 get_arch_package
-check_docker
-check_docker_compose
-pull_ansible_image
-ensure_ansible
-create_ssh_key
-copy_ssh_key
-install_keepalived
+#check_docker
+#check_docker_compose
+#pull_ansible_image
+#ensure_ansible
+#create_ssh_key
+#copy_ssh_key
+#install_keepalived
+install_nfs
+install_httpd
